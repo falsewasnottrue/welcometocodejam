@@ -6,9 +6,18 @@ object Welcome extends App {
 
 //  val text = "elcomew elcome to code jam".toList
 //  val text = "wweellccoommee to code qps jam".toList
-  val text = "welcome to codejam".toList
+//  val text = "welcome to codejam".toList
 
-  println(findPattern(text, pattern))
+  import scala.io._
+  val lines = Source.fromFile("src/welcome/C-large-practice.in").getLines.zipWithIndex
+  lines.next // drop #cases
+
+  while (lines.hasNext) {
+    val (text, i) = lines.next
+    val res = findPattern(text.toList, pattern)
+
+    println("Case #" + i + ": " + "%04d".format(res))
+  }
 
   def findPattern(text: List[Char], pattern: List[Char]): Int =
     pattern match {
